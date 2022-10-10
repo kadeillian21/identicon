@@ -15,6 +15,21 @@ defmodule Identicon do
   def main(input) do
     input
     |> hash_input()
+    |> pick_color
+  end
+
+  @doc """
+    The pick_color methods returns the first three elements from the hash_input result.  We do this by using pattern matching to assign the variables r, b, and g, and then use _tail to store the rest of the elements of the hex_list that we do not care about.
+
+    ## Examples
+
+        iex> Identicon.main("asdf")
+        [145, 46, 200]
+  """
+  def pick_color(image) do
+    %Identicon.Image{hex: hex_list} = image
+    [r, g, b | _tail] = hex_list
+    [r, g, b]
   end
 
   def hash_input(input) do
